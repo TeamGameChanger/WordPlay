@@ -95,6 +95,7 @@ WordPlay Design Project - README Template
 | streak | Int | stores the greatest number of days the user has consecutively played |
 | totalWon | Int | total number of games won by the user   |
 | totalGames | Int | total number of games played by the user   |
+| lastGameDate | String | date of the last time the user played the game  |
 | defaultSize | Int | default size of word user prefer to play (i.e. default 5 letter vs 6 letter word |
 
 
