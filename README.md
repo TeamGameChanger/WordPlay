@@ -95,7 +95,7 @@ WordPlay Design Project - README Template
 | streak | Int | stores the greatest number of days the user has consecutively played |
 | totalWon | Int | total number of games won by the user   |
 | totalGames | Int | total number of games played by the user   |
-| lastGameDate | String | date of the last time the user played the game  |
+| lastGameDate | Date | date of the last time the user played the game  |
 | defaultSize | Int | default size of word user prefer to play (i.e. default 5 letter vs 6 letter word |
 
 
@@ -105,5 +105,5 @@ WordPlay Design Project - README Template
  - User Login Screen
 - [ ] [POST] /users/login - to check if information successfully matches information from database 
  - Main Gameplay Screen
-- [ ] [GET] /users/:username/userStats - to get information about user stats, which includes the streak, totalWon, totalGames, and defaultSize 
+- [ ] [GET] /users/:username/userStats - to get information about user stats, which includes the streak, lastGameDate, totalWon, totalGames, and defaultSize 
 
