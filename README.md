@@ -1,7 +1,7 @@
-Original App Design Project - README Template
+WordPlay Design Project - README Template
 ===
 
-# APP_NAME_HERE
+# WordPlay
 
 ## Table of Contents
 
@@ -87,14 +87,17 @@ Original App Design Project - README Template
 |----------|--------|----------------------------------------------|
 | username | String | unique id for the user post (default field)   |
 | password | String | user's password for login authentication      |
-| ...      | ...    | ...                          
+| streak | Int | stores the greatest number of days the user has consecutively played |
+| totalGames | Int | total number of games played by the user   |
+| defaultSize | Int | default size of word user prefer to play (i.e. default 5 letter vs 6 letter word |
+|----------|--------|----------------------------------------------|
 
 
 ### Networking
+- User Registration Screen
+[POST] /users/register - to register new user in database
+- User Login Screen
+[POST] /users/login - to check if information successfully matches information from database 
+- Main Gameplay Screen
+[GET] /users/:username/userStats - to get information about user stats, which includes the streak, totalGames, and defaultSize 
 
-- [List of network requests by screen]
-- [Example: `[GET] /users` - to retrieve user data]
-- ...
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
