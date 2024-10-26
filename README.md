@@ -93,10 +93,10 @@ WordPlay Design Project - README Template
 
 
 ### Networking
- User Registration Screen
-[ ] [POST] /users/register - to register new user containing username and password in database
- User Login Screen
-[ ] [POST] /users/login - to check if information successfully matches information from database 
- Main Gameplay Screen
-[ ] [GET] /users/:username/userStats - to get information about user stats, which includes the streak, totalGames, and defaultSize 
+ - User Registration Screen
+- [ ] [POST] /users/register - to register new user containing username and password in database
+ - User Login Screen
+- [ ] [POST] /users/login - to check if information successfully matches information from database 
+ - Main Gameplay Screen
+- [ ] [GET] /users/:username/userStats - to get information about user stats, which includes the streak, totalGames, and defaultSize 
 
