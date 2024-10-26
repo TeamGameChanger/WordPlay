@@ -82,11 +82,15 @@ WordPlay Design Project - README Template
 
 ### Models
 
-[Model Name, e.g., User]
+[User Model]
 | Property | Type   | Description                                  |
 |----------|--------|----------------------------------------------|
 | username | String | unique id for the user post (default field)   |
 | password | String | user's password for login authentication      |
+
+[Stat Model]
+| Property | Type   | Description                                  |
+|----------|--------|----------------------------------------------|
 | streak | Int | stores the greatest number of days the user has consecutively played |
 | totalGames | Int | total number of games played by the user   |
 | defaultSize | Int | default size of word user prefer to play (i.e. default 5 letter vs 6 letter word |
