@@ -32,42 +32,71 @@ WordPlay Design Project - README Template
 
 **Required Must-have Stories**
 
-* [User can [specific action, e.g., register an account]]
-* ...
+* User can press a button to start the game
+* User can type and submit a word up to 6 times
+* User can see which letters are correct and whether or not they are in the correct position
+* User can see their score for the game
+* User can sign up with a username and password
+* User can login
+* User can logout
 
 **Optional Nice-to-have Stories**
 
-* [User can [specific action, e.g., persist user information across working sessions]]
-* ...
+* User can only play the game once a day
+* User can select their desired gamemode (5 or 6 letter words)
+* User can see their highest streak of consecutive days played
+* User can see their total number of games played
+* User can see their total number of wins
+* User recieves a daily notification reminding them to play
+* User can copy their score to share with friends
 
 ### 2. Screen Archetypes
 
-- [ ] [**Screen Name, e.g., Login Screen**]
-* [Required User Feature: User can log in.]
-- [ ] [**Another Screen Name**]
-* [Associated required user story]
-...
-...
-...
+**Login Screen**
+* User can login
+  
+**Sign Up Screen**
+* User can sign up with a username and password
+  
+**Start Screen**
+* User can select their desired gamemode (5 or 6 letter word)
+* User can press a button to start the game
+  
+**Gameplay Screen**
+* User can type and submit a word up to 6 times
+* User can see which letters are correct and whether or not they are in the correct position
+  
+**End Screen**
+* User can see their score for the game
+* User can copy their score to share with friends
+* User can logout
+  
+**Stats Screen**
+* User can see their highest streak of consecutive days played
+* User can see their total number of games played
+* User can see their total number of wins
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-
-- [ ] [First Tab, e.g., Home Feed]
-- [ ] [Second Tab, e.g., Profile]
-...
-...
-...
+- None for now
 
 **Flow Navigation** (Screen to Screen)
 
-- [ ] [**Screen Name**]
-  * Leads to [**Next Screen**]
-- [ ] [**Another Screen Name**]
-  * Leads to [**Another Screen**] 
-
+- **Login Screen**
+  * Leads to **Start Screen** if user logs in successfully
+  * Leads to **Sign Up Screen** if user chooses to sign up instead of logging in
+- **Sign Up Screen**
+  * Leads to **Start Screen** if user signs up successfully
+  * Leads to **Login Screen** if user chooses to login instead of signing up
+- **Start Screen**
+  * Leads to **Gameplay Screen** if user presses button to start game
+- **Gameplay Screen**
+  * Leads to **End Screen** if user guesses the word or runs out of attempts 
+- **End Screen**
+  * Leads to **Stats Screen** if user presses button to view their stats
+  * Leads to **Login Screen** if user logs out
 
 ## Wireframes
 
