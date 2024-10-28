@@ -49,6 +49,7 @@ WordPlay Design Project - README Template
 * User can see their total number of wins
 * User recieves a daily notification reminding them to play
 * User can copy their score to share with friends
+* User can see a custom keyboard that keeps track of remaining letters
 
 ### 2. Screen Archetypes
 
@@ -61,20 +62,15 @@ WordPlay Design Project - README Template
 **Start Screen**
 * User can select their desired gamemode (5 or 6 letter word)
 * User can press a button to start the game
+* User can see their highest streak of consecutive days played
+* User can see their total number of games played
+* User can see their total number of wins
+* User can logout
   
 **Gameplay Screen**
 * User can type and submit a word up to 6 times
 * User can see which letters are correct and whether or not they are in the correct position
-  
-**End Screen**
 * User can see their score for the game
-* User can copy their score to share with friends
-* User can logout
-  
-**Stats Screen**
-* User can see their highest streak of consecutive days played
-* User can see their total number of games played
-* User can see their total number of wins
 
 ### 3. Navigation
 
@@ -92,11 +88,9 @@ WordPlay Design Project - README Template
   * Leads to **Login Screen** if user chooses to login instead of signing up
 - **Start Screen**
   * Leads to **Gameplay Screen** if user presses button to start game
-- **Gameplay Screen**
-  * Leads to **End Screen** if user guesses the word or runs out of attempts 
-- **End Screen**
-  * Leads to **Stats Screen** if user presses button to view their stats
   * Leads to **Login Screen** if user logs out
+- **Gameplay Screen**
+  * Leads to **Start Screen** once game has finished
 
 ## Wireframes
 
