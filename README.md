@@ -14,7 +14,7 @@ WordPlay Design Project - README Template
 
 ### Description
 
-[WordPlay is a recreational mobile app that challenges users to expand their creativity, vocabulary, and problem-solving skills through an engaging and logic-based word game. Designed to offer greater personalization and unique features beyond already existing word apps like Wordle, WordPlay motivates users to improve their memory, vocabulary, and cognitive abilities. Users can track personal statistics such as streaks and high scores aimed to improve their skills over time.]
+WordPlay is a recreational mobile app that challenges users to expand their creativity, vocabulary, and problem-solving skills through an engaging and logic-based word game. Designed to offer greater personalization and unique features beyond already existing word apps like Wordle, WordPlay motivates users to improve their memory, vocabulary, and cognitive abilities. Users can track personal statistics such as streaks and high scores aimed to improve their skills over time.
 
 ### App Evaluation
 
