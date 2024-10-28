@@ -94,10 +94,9 @@ WordPlay Design Project - README Template
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section]
+<img src="https://i.imgur.com/f1MkShs.jpeg" width=600>`
 
 ### [BONUS] Digital Wireframes & Mockups
-[Image of Wireframes](https://imgur.com/a/lhqZucc)
 
 ### [BONUS] Interactive Prototype
 
