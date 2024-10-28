@@ -14,17 +14,16 @@ WordPlay Design Project - README Template
 
 ### Description
 
-[Provide a brief description of your app, its purpose, and functionality.]
+[WordPlay is a recreational mobile app that challenges users to expand their creativity, vocabulary, and problem-solving skills through an engaging and logic-based word game. Designed to offer greater personalization and unique features beyond already existing word apps like Wordle, WordPlay motivates users to improve their memory, vocabulary, and cognitive abilities. Users can track personal statistics such as streaks and high scores aimed to improve their skills over time.]
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
-- **Category:** [e.g., Social, Entertainment, Education]
-- **Mobile:** [Is it a mobile application only?]
-- **Story:**  [What story does your app tell?]
-- **Market:** [Target audience for the app]
-- **Habit:** [Is it a daily use app or occasional use?]
-- **Scope:** [Is it a broad or narrow app in terms of features?]
+* Category: Entertainment, Education
+* Mobile: Yes, it is a mobile application only.
+* Story: WordPlay tells a story of continuous improvement, where users are challenged daily to surpass their previous word-solving abilities. It encourages a journey of mental growth and mastery of words, promoting a sense of personal accomplishment.
+* Market: The target audience includes individuals of all ages interested in enhancing problem-solving, memorization, and vocabulary skills. This includes casual gamers, word enthusiasts, and people looking to improve language proficiency and cognitive functions.
+* Habit: This app is designed for daily use, encouraging consistent engagement through daily challenges and streak-based rewards.
+* Scope: The app has a broad scope with varied features, including statistics tracking, and goal setting, to cater to a wide range of user preferences and skills.
 
 ## Product Spec
 
