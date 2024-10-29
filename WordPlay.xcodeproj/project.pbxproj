@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		53C8FFAB2CD178EA00F92BF3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 53C8FFAA2CD178EA00F92BF3 /* FirebaseAuth */; };
+		53C8FFAD2CD178EA00F92BF3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 53C8FFAC2CD178EA00F92BF3 /* FirebaseCore */; };
+		53C8FFAF2CD178EA00F92BF3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 53C8FFAE2CD178EA00F92BF3 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		53C8FF662CD172EC00F92BF3 /* WordPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53C8FFAD2CD178EA00F92BF3 /* FirebaseCore in Frameworks */,
+				53C8FFAB2CD178EA00F92BF3 /* FirebaseAuth in Frameworks */,
+				53C8FFAF2CD178EA00F92BF3 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +74,9 @@
 			);
 			name = WordPlay;
 			packageProductDependencies = (
+				53C8FFAA2CD178EA00F92BF3 /* FirebaseAuth */,
+				53C8FFAC2CD178EA00F92BF3 /* FirebaseCore */,
+				53C8FFAE2CD178EA00F92BF3 /* FirebaseFirestore */,
 			);
 			productName = WordPlay;
 			productReference = 53C8FF662CD172EC00F92BF3 /* WordPlay.app */;
@@ -94,6 +106,9 @@
 			);
 			mainGroup = 53C8FF5D2CD172EC00F92BF3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				53C8FFA92CD178EA00F92BF3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 53C8FF672CD172EC00F92BF3 /* Products */;
 			projectDirPath = "";
@@ -322,6 +337,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		53C8FFA92CD178EA00F92BF3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		53C8FFAA2CD178EA00F92BF3 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53C8FFA92CD178EA00F92BF3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		53C8FFAC2CD178EA00F92BF3 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53C8FFA92CD178EA00F92BF3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		53C8FFAE2CD178EA00F92BF3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53C8FFA92CD178EA00F92BF3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 53C8FF5E2CD172EC00F92BF3 /* Project object */;
 }
