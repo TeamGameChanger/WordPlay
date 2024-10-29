@@ -31,24 +31,24 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 
 **Required Must-have Stories**
 
-* User can press a button to start the game
-* User can type and submit a word up to 6 times
-* User can see which letters are correct and whether or not they are in the correct position
-* User can see their score for the game
-* User can sign up with a username and password
-* User can login
-* User can logout
+- [ ] User can press a button to start the game
+- [ ] User can type and submit a word up to 6 times
+- [ ] User can see which letters are correct and whether or not they are in the correct position
+- [ ] User can see their score for the game
+- [ ] User can sign up with a username and password
+- [ ] User can login
+- [ ] User can logout
 
 **Optional Nice-to-have Stories**
 
-* User can only play the game once a day
-* User can select their desired gamemode (5 or 6 letter words)
-* User can see their highest streak of consecutive days played
-* User can see their total number of games played
-* User can see their total number of wins
-* User recieves a daily notification reminding them to play
-* User can copy their score to share with friends
-* User can see a custom keyboard that keeps track of remaining letters
+- [ ] User can only play the game once a day
+- [ ] User can select their desired gamemode (5 or 6 letter words)
+- [ ] User can see their highest streak of consecutive days played
+- [ ] User can see their total number of games played
+- [ ] User can see their total number of wins
+- [ ] User recieves a daily notification reminding them to play
+- [ ] User can copy their score to share with friends
+- [ ] User can see a custom keyboard that keeps track of remaining letters
 
 ### 2. Screen Archetypes
 
