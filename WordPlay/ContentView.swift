@@ -19,6 +19,36 @@ struct ContentView: View {
     }
 }
 
+struct LoginView: View {
+    var body: some View {
+        Text("Login") // placeholder
+    }
+}
+
+struct SignUpView: View {
+    var body: some View {
+        Text("Sign Up") // placeholder
+    }
+}
+
+struct GameStartView: View {
+    var body: some View {
+        Text("Game Start") // placeholder
+    }
+}
+
+struct GameplayView: View {
+    var body: some View {
+        Text("Gameplay") // placeholder
+    }
+}
+
+struct GameEndView: View {
+    var body: some View {
+        Text("Game End") // placeholder
+    }
+}
+
 #Preview {
     ContentView()
 }
