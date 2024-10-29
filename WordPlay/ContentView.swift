@@ -43,12 +43,6 @@ struct GameplayView: View {
     }
 }
 
-struct GameEndView: View {
-    var body: some View {
-        Text("Game End") // placeholder
-    }
-}
-
 #Preview {
     ContentView()
 }
