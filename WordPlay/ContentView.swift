@@ -15,6 +15,11 @@ struct ContentView: View {
                     .imageScale(.large)
                     .foregroundStyle(.tint)
                 Text("Welcome to WordPlay!")
+        
+                NavigationLink(destination: SignUpView()) {
+                    Text("Sign Up")
+                        .padding()
+                }
             }
             .padding()
         }
@@ -28,8 +33,44 @@ struct LoginView: View {
 }
 
 struct SignUpView: View {
+    @State var username: String = ""
+    @State var password: String = ""
+    
     var body: some View {
-        Text("Sign Up") // placeholder
+        VStack {
+            Text("WordPlay")
+                .bold()
+                .font(.largeTitle)
+                .padding()
+                .foregroundColor(Color.blue)
+            
+            Spacer()
+                .frame(height: 75)
+            
+            Text("Sign Up")
+                .bold()
+                .font(.title)
+                .padding()
+            
+            TextField("Username", text: $username)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(width: 250)
+                .padding(.top)
+            
+            SecureField("Password", text: $password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(width: 250)
+                .padding(.bottom)
+            
+            Button("Register") {
+                // Register user
+            }
+            .buttonStyle(.borderedProminent)
+            .foregroundColor(.white)
+            .padding()
+            
+            Spacer()
+        }
     }
 }
 
