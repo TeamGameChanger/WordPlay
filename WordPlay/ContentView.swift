@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(AuthManager.self) var authManager
     var body: some View {
         NavigationView {
             VStack {
@@ -27,49 +28,48 @@ struct ContentView: View {
 }
 
 struct LoginView: View {
+    @Environment(AuthManager.self) var authManager
     var body: some View {
         Text("Login") // placeholder
     }
 }
 
 struct SignUpView: View {
-    @State var username: String = ""
-    @State var password: String = ""
     
+    @Environment(AuthManager.self) var authManager
+    @State private var email: String = ""
+    @State private var password: String = ""
+
     var body: some View {
         VStack {
-            Text("WordPlay")
-                .bold()
+            Text("Sign Up for Wordplay!")
                 .font(.largeTitle)
-                .padding()
-                .foregroundColor(Color.blue)
-            
-            Spacer()
-                .frame(height: 75)
-            
-            Text("Sign Up")
-                .bold()
-                .font(.title)
-                .padding()
-            
-            TextField("Username", text: $username)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 250)
-                .padding(.top)
-            
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 250)
-                .padding(.bottom)
-            
-            Button("Register") {
-                // Register user
+
+            // Email + password fields
+            VStack {
+                TextField("Email", text: $email)
+                SecureField("Password", text: $password)
             }
-            .buttonStyle(.borderedProminent)
-            .foregroundColor(.white)
-            .padding()
-            
-            Spacer()
+            .textFieldStyle(.roundedBorder) // <-- Style text fields (applies to both text fields within the VStack)
+            .textInputAutocapitalization(.never) // <-- No auto capitalization (can be annoying for emails and passwords)
+            .padding(40)
+
+            // Sign up + Login buttons
+            HStack {
+                Button("Sign Up") {
+                    print("Sign up user: \(email), \(password)")
+                    authManager.signUp(email: email, password: password)
+
+                }
+                .buttonStyle(.borderedProminent) // <-- Style button
+
+                Button("Login") {
+                    print("Login user: \(email), \(password)")
+                    authManager.signIn(email: email, password: password)
+
+                }
+                .buttonStyle(.bordered) // <-- Style button
+            }
         }
     }
 }
@@ -87,5 +87,5 @@ struct GameplayView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().environment(AuthManager()) 
 }
