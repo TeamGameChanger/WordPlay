@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD8z2VADyfOe2rUt0gRanT0t1K6K_uKiS4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>167739018994</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ios.cg.fiu.edu.WordPlay</string>
+	<key>PROJECT_ID</key>
+	<string>wordplaydb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>wordplaydb.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:167739018994:ios:f820089daee8324bc58a6b</string>
+</dict>
+</plist>
