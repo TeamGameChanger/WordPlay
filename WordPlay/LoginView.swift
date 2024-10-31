@@ -29,7 +29,7 @@ struct LoginView: View {
 
         Button("Login") {
             if email.isEmpty || password.isEmpty {
-                alertMessage = "Please fill in both username and password."
+                alertMessage = "Please fill in both email and password."
                 showAlert = true
             } else {
                 print("Login user: \(email), \(password)")

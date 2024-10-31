@@ -12,6 +12,8 @@ struct SignUpView: View {
     @Environment(AuthManager.self) var authManager
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showAlert = false
+    @State private var alertMessage = ""
 
     var body: some View {
         VStack {
@@ -30,13 +32,29 @@ struct SignUpView: View {
             // Sign up button
             HStack {
                 Button("Sign Up") {
-                    print("Sign up user: \(email), \(password)")
-                    authManager.signUp(email: email, password: password)
-                    Task {
-                        await authManager.signIn(email: email, password: password)
+                    if email.isEmpty || password.isEmpty {
+                        alertMessage = "Please fill in both email and password."
+                        showAlert = true
+                    } else {
+                        Task {
+                            let success = await authManager.signUp(email: email, password: password)
+                            await authManager.signIn(email: email, password: password)
+                            
+                            if !success {
+                                alertMessage = "Unable to create account. Please try again."
+                                showAlert = true
+                            }
+                        }
                     }
                 }
                 .buttonStyle(.borderedProminent) // <-- Style button
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Sign Up Error"),
+                        message: Text(alertMessage),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
             }
         }
     }

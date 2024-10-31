@@ -24,16 +24,15 @@ class AuthManager {
     }
 
     // https://firebase.google.com/docs/auth/ios/start#sign_up_new_users
-    func signUp(email: String, password: String) {
-        Task {
-            do {
-                let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
-                user = authResult.user // <-- Set the user
-            } catch {
-                print(error)
-            }
+    func signUp(email: String, password: String) async -> Bool {
+        do {
+            let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+            user = authResult.user // <-- Set the user
+            return true // Successful sign up
+        } catch {
+            print(error)
+            return false // Unsuccessful sign up
         }
-
     }
 
     // https://firebase.google.com/docs/auth/ios/start#sign_in_existing_users
