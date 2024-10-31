@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
     var body: some View {
@@ -20,6 +21,11 @@ struct ContentView: View {
                     Text("Sign Up")
                         .padding()
                 }
+                
+                NavigationLink(destination: GamePlayView()) {
+                    Text("test: go to game") //remove element afterwards, this is just to skip signing up
+                        .padding()
+                }//end of test navigation
             }
             .padding()
         }
@@ -80,11 +86,12 @@ struct GameStartView: View {
     }
 }
 
-struct GameplayView: View {
-    var body: some View {
-        Text("Gameplay") // placeholder
-    }
-}
+//im not actually sure if this does anything
+struct GameplayView: View { //ely work here
+    var body: some View{
+        GameplayView()
+    }//end of body some view
+}//end of gameplayview struct
 
 #Preview {
     ContentView()
