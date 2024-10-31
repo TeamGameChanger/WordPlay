@@ -32,7 +32,9 @@ struct SignUpView: View {
                 Button("Sign Up") {
                     print("Sign up user: \(email), \(password)")
                     authManager.signUp(email: email, password: password)
-                    authManager.signIn(email: email, password: password)
+                    Task {
+                        await authManager.signIn(email: email, password: password)
+                    }
                 }
                 .buttonStyle(.borderedProminent) // <-- Style button
             }
