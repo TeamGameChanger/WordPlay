@@ -11,10 +11,7 @@ struct ContentView: View {
     @Environment(AuthManager.self) var authManager
     var body: some View {
         NavigationView {
-            VStack {
-                LoginView()
-            }
-            .padding()
+            LoginView()
         }
     }
 }
