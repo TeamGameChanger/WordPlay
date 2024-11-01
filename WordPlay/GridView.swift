@@ -22,18 +22,24 @@ struct GridView: View {
                 }
             }
         }
-        .frame(maxHeight: 400)
+        .frame(maxHeight: 360)
     }
 }
 
 struct GridTileView: Identifiable, View {
     var letter: String
     var id = UUID()
+    var backgroundColor = Color.clear
+    var textColor = Color.black
+    var borderColor = Color.gray
 
     var body: some View {
         Text(letter)
             .bold()
+            .font(.title)
             .frame(width: 50, height: 50)
-            .border(Color.gray)
+            .background(backgroundColor)
+            .foregroundStyle(textColor)
+            .border(borderColor)
     }
 }

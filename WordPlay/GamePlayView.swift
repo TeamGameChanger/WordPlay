@@ -20,6 +20,8 @@ struct GamePlayView: View {
     var body: some View {
         GridView(tiles: $gridTiles)
         
+        Spacer()
+        
         // TODO: Backspace button
         // TODO: Change keyboard colors only when word is submitted
         // TODO: Do not override green or dark gray keyboard tile colors
@@ -34,12 +36,16 @@ struct GamePlayView: View {
                         } else {
                             gridTiles[currentRow][index].letter = ""
                         }
+                        
+                        gridTiles[currentRow][index].borderColor = Color.black
                     }
                 }
             }
         
         Button("Submit") {
             if !gameOver && currentInput.count == 5 {
+                updateTileColors()
+                
                 if currentInput == targetWord {
                     print("Game win")
                     gameOver = true
@@ -47,7 +53,6 @@ struct GamePlayView: View {
                 }
                 
                 // TODO: Check if input is a valid word
-                // TODO: Update colors of tiles based on correctness (matching keyboard colors)
                 
                 currentRow += 1
                 currentInput = ""
@@ -60,6 +65,30 @@ struct GamePlayView: View {
             }
         }
         .buttonStyle(.borderedProminent)
+    }
+    
+    // determines what color the grid tiles should be after submitting a word
+    func updateTileColors() {
+        let target = Array(targetWord) // makes accessing characters simpler
+        var frequencies = target.reduce(into: [:]) { counts, char in
+            counts[char, default: 0] += 1
+        }
+        
+        for (index, letter) in currentInput.enumerated() {
+            if letter == target[index] {
+                gridTiles[currentRow][index].backgroundColor = Color.green
+            }
+            else if let count = frequencies[letter], count > 0 {
+                gridTiles[currentRow][index].backgroundColor = Color.yellow
+                frequencies[letter]! -= 1
+            }
+            else {
+                gridTiles[currentRow][index].backgroundColor = Color.gray
+            }
+            
+            gridTiles[currentRow][index].textColor = Color.white
+            gridTiles[currentRow][index].borderColor = Color.clear
+        }
     }
 }
 
