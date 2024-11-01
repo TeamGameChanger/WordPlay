@@ -12,6 +12,7 @@ struct GridView: View {
     @State var inputtedWords: [String] = []
     @State var currentWord: String = ""
     @State var currentRow = 0
+    @State var gameOver = false
     let targetWord = "BUNNY" // TODO: replace with word of the day
     let rows = Array(repeating: GridItem(.flexible()), count: 6)
     
@@ -32,34 +33,47 @@ struct GridView: View {
             .frame(width: 275)
             .padding()
             .onChange(of: currentWord) {
-                // truncate input to 5 letters, update later
-                if currentWord.count > 5 {
-                    currentWord = String(currentWord.prefix(5))
-                }
-                
-                currentWord = currentWord.uppercased()
-        
-                for index in 0..<tiles[currentRow].count {
-                    if index < currentWord.count {
-                        tiles[currentRow][index].letter = String(currentWord[index])
-                    } else {
-                        tiles[currentRow][index].letter = ""
+                if !gameOver {
+                    // truncate input to 5 letters, update later
+                    if currentWord.count > 5 {
+                        currentWord = String(currentWord.prefix(5))
                     }
+                    
+                    currentWord = currentWord.uppercased()
+                    
+                    for index in 0..<tiles[currentRow].count {
+                        if index < currentWord.count {
+                            tiles[currentRow][index].letter = String(currentWord[index])
+                        } else {
+                            tiles[currentRow][index].letter = ""
+                        }
+                    }
+                } else {
+                    currentWord = ""
                 }
             }
         
         Button("Submit") {
-            if currentWord == targetWord {
-                print("Game win")
-                // TODO: Trigger game end code
+            if !gameOver && currentWord.count == 5 {
+                if currentWord == targetWord {
+                    print("Game win")
+                    gameOver = true
+                    // TODO: Trigger game end code
+                }
+                
+                // TODO: Check if input is a valid word
+                // TODO: Update colors of tiles based on correctness
+                
+                inputtedWords.append(currentWord)
+                currentRow += 1
+                currentWord = ""
+                
+                if currentRow > 5 {
+                    print("Game end")
+                    gameOver = true
+                    // TODO: Trigger game end code
+                }
             }
-
-            // TODO: Check if input is a valid word
-            // TODO: Update colors of tiles based on correctness
-
-            inputtedWords.append(currentWord)
-            currentRow += 1
-            currentWord = ""
         }
         .buttonStyle(.borderedProminent)
     }
