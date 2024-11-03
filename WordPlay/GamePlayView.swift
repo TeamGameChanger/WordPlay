@@ -66,11 +66,6 @@ struct GamePlayView: View { //ely work here
     
 }//end of gameplayview struct
 
-#Preview {
-    GameplayView()
-}
-
-
 extension String {
 
     var length: Int {

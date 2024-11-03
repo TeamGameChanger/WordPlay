@@ -12,7 +12,14 @@ struct ContentView: View {
     @Environment(AuthManager.self) var authManager
     var body: some View {
         NavigationView {
-            LoginView()
+            VStack {
+                LoginView()
+                
+                NavigationLink(destination: GamePlayView()) {
+                    Text("test: go to game") //remove element afterwards, this is just to skip signing up
+                        .padding()
+                }//end of test navigation
+            }
         }
     }
 }
@@ -22,13 +29,6 @@ struct GameStartView: View {
         Text("Game Start") // placeholder
     }
 }
-
-//im not actually sure if this does anything
-struct GameplayView: View { //ely work here
-    var body: some View{
-        GameplayView()
-    }//end of body some view
-}//end of gameplayview struct
 
 #Preview {
     ContentView().environment(AuthManager()) 
