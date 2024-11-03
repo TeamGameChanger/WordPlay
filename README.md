@@ -18,12 +18,12 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 
 ### App Evaluation
 
-* Category: Entertainment, Education
-* Mobile: Yes, it is a mobile application only.
-* Story: WordPlay tells a story of continuous improvement, where users are challenged daily to surpass their previous word-solving abilities. It encourages a journey of mental growth and mastery of words, promoting a sense of personal accomplishment.
-* Market: The target audience includes individuals of all ages interested in enhancing problem-solving, memorization, and vocabulary skills. This includes casual gamers, word enthusiasts, and people looking to improve language proficiency and cognitive functions.
-* Habit: This app is designed for daily use, encouraging consistent engagement through daily challenges and streak-based rewards.
-* Scope: The app has a broad scope with varied features, including statistics tracking, and goal setting, to cater to a wide range of user preferences and skills.
+* **Category:** Entertainment, Education
+* **Mobile:** Yes, it is a mobile application only.
+* **Story:** WordPlay tells a story of continuous improvement, where users are challenged daily to surpass their previous word-solving abilities. It encourages a journey of mental growth and mastery of words, promoting a sense of personal accomplishment.
+* **Market:** The target audience includes individuals of all ages interested in enhancing problem-solving, memorization, and vocabulary skills. This includes casual gamers, word enthusiasts, and people looking to improve language proficiency and cognitive functions.
+* **Habit:** This app is designed for daily use, encouraging consistent engagement through daily challenges and streak-based rewards.
+* **Scope:** The app has a broad scope with varied features, including statistics tracking, and goal setting, to cater to a wide range of user preferences and skills.
 
 ## Product Spec
 
@@ -32,6 +32,7 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 **Required Must-have Stories**
 
 - [ ] User can press a button to start the game
+- [ ] User can see a grid that is initially empty and fills up as they submit words
 - [ ] User can type and submit a word up to 6 times
 - [ ] User can see which letters are correct and whether or not they are in the correct position
 - [ ] User can see their score for the game
@@ -67,6 +68,7 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 * User can logout
   
 **Gameplay Screen**
+* User can see a grid that is initially empty and fills up as they submit words
 * User can type and submit a word up to 6 times
 * User can see which letters are correct and whether or not they are in the correct position
 * User can see their score for the game

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		53C8FFAB2CD178EA00F92BF3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 53C8FFAA2CD178EA00F92BF3 /* FirebaseAuth */; };
-		53C8FFAD2CD178EA00F92BF3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 53C8FFAC2CD178EA00F92BF3 /* FirebaseCore */; };
 		53C8FFAF2CD178EA00F92BF3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 53C8FFAE2CD178EA00F92BF3 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +28,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53C8FFAD2CD178EA00F92BF3 /* FirebaseCore in Frameworks */,
 				53C8FFAB2CD178EA00F92BF3 /* FirebaseAuth in Frameworks */,
 				53C8FFAF2CD178EA00F92BF3 /* FirebaseFirestore in Frameworks */,
 			);
@@ -75,7 +73,6 @@
 			name = WordPlay;
 			packageProductDependencies = (
 				53C8FFAA2CD178EA00F92BF3 /* FirebaseAuth */,
-				53C8FFAC2CD178EA00F92BF3 /* FirebaseCore */,
 				53C8FFAE2CD178EA00F92BF3 /* FirebaseFirestore */,
 			);
 			productName = WordPlay;
@@ -356,11 +353,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 53C8FFA92CD178EA00F92BF3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		53C8FFAC2CD178EA00F92BF3 /* FirebaseCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 53C8FFA92CD178EA00F92BF3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCore;
 		};
 		53C8FFAE2CD178EA00F92BF3 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
