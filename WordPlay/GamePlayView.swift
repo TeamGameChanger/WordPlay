@@ -7,88 +7,91 @@
 
 import SwiftUI
 
-struct GamePlayView: View { //ely work here
-    let wordtoSolve = "CRATE" //TODO: replace with the actual word needed to solve the wordplay
-    let columnskeyboard = [
-                GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40))
-    ]
-    @State var enteredLetters = ""
-    @State var numOfLettersEntered = 0
+struct GamePlayView: View {
+    @State var currentInput = ""
+    @State var gameOver = false
+    @State var currentRow = 0
     
-    @State var isInRightPositionKeyboard = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]//user selects letter in correct position
-    @State var isInWordAndSelectedKeyboard = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false] //user selects right letter wrong spot
-    @State var isNotInWordAndSelectedKeyboard = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false] //user selects wrong letter
-    @State var keyboardtiles: [Tile] = [Tile(letter: "Q"), Tile(letter: "W"), Tile(letter: "E"), Tile(letter: "R"), Tile(letter: "T"), Tile(letter: "Y"), Tile(letter: "U"), Tile(letter: "I"), Tile(letter: "O"), Tile(letter: "P"), Tile(letter: "A"), Tile(letter: "S"), Tile(letter: "D"), Tile(letter: "F"), Tile(letter: "G"), Tile(letter: "H"), Tile(letter: "J"), Tile(letter: "K"), Tile(letter: "L"), Tile(letter: "Z"), Tile(letter: "X"), Tile(letter: "C"), Tile(letter: "V"), Tile(letter: "B"), Tile(letter: "N"), Tile(letter: "M")] //the entire keyboard
+    // TODO: Update to handle both 5 letter and 6 letter words (5x6 or 6x6 grid)
+    @State var gridTiles: [[GridTileView]] = Array(repeating: Array(repeating: GridTileView(letter: ""), count: 5), count: 6)
+
+    let targetWord = "CRATE" //TODO: replace with the actual word needed to solve the wordplay
     
     var body: some View {
-        Text("Gameplay") // placeholder
-        LazyVGrid(columns: columnskeyboard) {
-            ForEach(0..<keyboardtiles.count){ index in
-                LetterTileView(tile: keyboardtiles[index], isInRightPosition: $isInRightPositionKeyboard[index], isInWordAndSelected: $isInWordAndSelectedKeyboard[index], isNotInWordAndSelected: $isNotInWordAndSelectedKeyboard[index], onTapOnContent:{
-                        print("i was tapped!") //add more brain
-                    if(numOfLettersEntered < 5){ //checks that user isnt putting in more than 5 letters
-                        numOfLettersEntered += 1
-                        enteredLetters = enteredLetters + keyboardtiles[index].letter
-                        print("numOfLettersEntered: \(numOfLettersEntered), enteredLetters: \(enteredLetters)")
-                        if(wordtoSolve.contains(keyboardtiles[index].letter)){
-                            if(checkLetterPostion(letter: keyboardtiles[index].letter) == 0){
-                                isInRightPositionKeyboard[index] = true
-                                isInWordAndSelectedKeyboard[index] = false
-                                isNotInWordAndSelectedKeyboard[index] = false
-                            }//end of inner if statment to check return value
-                            else{
-                                isInRightPositionKeyboard[index] = false
-                                isInWordAndSelectedKeyboard[index] = true
-                                isNotInWordAndSelectedKeyboard[index] = false
-                            }//else end of inner if statement to check return value
-                        }//end of if statement
-                        else{
-                            isInRightPositionKeyboard[index] = false
-                            isInWordAndSelectedKeyboard[index] = false
-                            isNotInWordAndSelectedKeyboard[index] = true
-                        }//end of if statement for seeing if the letter was in the word
-                    }//end of if statemnt for checking length
-                    else{
-                        print("Too many letters!")
-                    }//other end of if statemnt for checking length
-                })//end of letterTileView
-            }//end of foreach
-        }//end of lazyV grid
-    }//end of body some view
+        GridView(tiles: $gridTiles)
+        
+        Spacer()
+        
+        // TODO: Backspace button
+        // TODO: Change keyboard colors only when word is submitted
+        // TODO: Do not override green or dark gray keyboard tile colors
+        KeyboardView(enteredLetters: $currentInput,
+                     gameOver: $gameOver,
+                     wordtoSolve: targetWord)
+            .onChange(of: currentInput) {
+                if !gameOver {
+                    for index in 0..<gridTiles[currentRow].count {
+                        if index < currentInput.count {
+                            gridTiles[currentRow][index].letter = String(currentInput[index])
+                        } else {
+                            gridTiles[currentRow][index].letter = ""
+                        }
+                        
+                        gridTiles[currentRow][index].borderColor = Color.black
+                    }
+                }
+            }
+        
+        Button("Submit") {
+            if !gameOver && currentInput.count == 5 {
+                updateTileColors()
+                
+                if currentInput == targetWord {
+                    print("Game win")
+                    gameOver = true
+                    // TODO: Trigger game end code
+                }
+                
+                // TODO: Check if input is a valid word
+                
+                currentRow += 1
+                currentInput = ""
+                
+                if currentRow > 5 {
+                    print("Game end")
+                    gameOver = true
+                    // TODO: Trigger game end code
+                }
+            }
+        }
+        .buttonStyle(.borderedProminent)
+    }
     
-    func checkLetterPostion(letter:String) -> Int{
-        if(wordtoSolve[numOfLettersEntered-1] == letter){
-            return 0; //return 0 which means yes! the letter is there in that position congrats
-        }else{
-            return 1; //return 1 if it is not in that postiion. too bad
-        }//end of if statment
-    }//end of checkLetterPostion func
-    
-}//end of gameplayview struct
-
-extension String {
-
-    var length: Int {
-        return count
+    // determines what color the grid tiles should be after submitting a word
+    func updateTileColors() {
+        let target = Array(targetWord) // makes accessing characters simpler
+        var frequencies = target.reduce(into: [:]) { counts, char in
+            counts[char, default: 0] += 1
+        }
+        
+        for (index, letter) in currentInput.enumerated() {
+            if letter == target[index] {
+                gridTiles[currentRow][index].backgroundColor = Color.green
+            }
+            else if let count = frequencies[letter], count > 0 {
+                gridTiles[currentRow][index].backgroundColor = Color.yellow
+                frequencies[letter]! -= 1
+            }
+            else {
+                gridTiles[currentRow][index].backgroundColor = Color.gray
+            }
+            
+            gridTiles[currentRow][index].textColor = Color.white
+            gridTiles[currentRow][index].borderColor = Color.clear
+        }
     }
+}
 
-    subscript (i: Int) -> String {
-        return self[i ..< i + 1]
-    }
-
-    func substring(fromIndex: Int) -> String {
-        return self[min(fromIndex, length) ..< length]
-    }
-
-    func substring(toIndex: Int) -> String {
-        return self[0 ..< max(0, toIndex)]
-    }
-
-    subscript (r: Range<Int>) -> String {
-        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
-                                            upper: min(length, max(0, r.upperBound))))
-        let start = index(startIndex, offsetBy: range.lowerBound)
-        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
-        return String(self[start ..< end])
-    }
+#Preview {
+    GamePlayView()
 }
