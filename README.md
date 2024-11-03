@@ -9,6 +9,7 @@ WordPlay Design Project - README Template
 2. [Product Spec](#Product-Spec)
 3. [Wireframes](#Wireframes)
 4. [Schema](#Schema)
+5. [Sprints](#Sprints)
 
 ## Overview
 
@@ -32,13 +33,13 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 **Required Must-have Stories**
 
 - [ ] User can press a button to start the game
-- [ ] User can see a grid that is initially empty and fills up as they submit words
-- [ ] User can type and submit a word up to 6 times
-- [ ] User can see which letters are correct and whether or not they are in the correct position
+- [X] User can see a grid that is initially empty and fills up as they submit words
+- [X] User can type and submit a word up to 6 times
+- [X] User can see which letters are correct and whether or not they are in the correct position
 - [ ] User can see their score for the game
-- [ ] User can sign up with a username and password
-- [ ] User can login
-- [ ] User can logout
+- [X] User can sign up with a username and password
+- [X] User can login
+- [X] User can logout
 
 **Optional Nice-to-have Stories**
 
@@ -49,7 +50,7 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 - [ ] User can see their total number of wins
 - [ ] User recieves a daily notification reminding them to play
 - [ ] User can copy their score to share with friends
-- [ ] User can see a custom keyboard that keeps track of remaining letters
+- [X] User can see a custom keyboard that keeps track of remaining letters
 
 ### 2. Screen Archetypes
 
@@ -129,5 +130,21 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
  - User Login Screen
 - [ ] [POST] /users/login - to check if information successfully matches information from database 
  - Main Gameplay Screen
-- [ ] [GET] /users/:username/userStats - to get information about user stats, which includes the streak, lastGameDate, totalWon, totalGames, and defaultSize 
+- [ ] [GET] /users/:username/userStats - to get information about user stats, which includes the streak, lastGameDate, totalWon, totalGames, and defaultSize
+
+## Sprints
+
+### Sprint 1 Progress
+<div>
+    <a href="https://www.loom.com/share/eb2095ab669b458b9f49eb23acc303a4">
+    </a>
+    <a href="https://www.loom.com/share/eb2095ab669b458b9f49eb23acc303a4">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/eb2095ab669b458b9f49eb23acc303a4-1d614c03bb6e27e8-full-play.gif">
+    </a>
+  </div>
+
+### Sprint 2 Progress
+
+### Sprint 3 Progress
+
 
