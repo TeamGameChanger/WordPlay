@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
     @Environment(AuthManager.self) var authManager
@@ -22,11 +23,12 @@ struct GameStartView: View {
     }
 }
 
-struct GameplayView: View {
-    var body: some View {
-        Text("Gameplay") // placeholder
-    }
-}
+//im not actually sure if this does anything
+struct GameplayView: View { //ely work here
+    var body: some View{
+        GameplayView()
+    }//end of body some view
+}//end of gameplayview struct
 
 #Preview {
     ContentView().environment(AuthManager()) 
