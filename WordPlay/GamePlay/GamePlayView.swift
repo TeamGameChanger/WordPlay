@@ -12,86 +12,89 @@ struct GamePlayView: View {
     @State var gameOver = false
     @State var currentRow = 0
     @State var submitPressed = false
-    
-    // TODO: Update to handle both 5 letter and 6 letter words (5x6 or 6x6 grid)
-    @State var gridTiles: [[GridTileView]] = Array(repeating: Array(repeating: GridTileView(letter: ""), count: 5), count: 6)
+    @State var gridTiles: [[GridTileView]] = []
 
-    let targetWord = "CRATE" //TODO: replace with the actual word needed to solve the wordplay
+    let wordLength: Int
+    // TODO: Replace with the actual word needed to solve the wordplay
+    let targetWord = "CRATER"
     
     var body: some View {
-        Spacer()
-        
-        GridView(tiles: $gridTiles)
-        
-        Spacer()
-        
-        // TODO: Do not override green or dark gray keyboard tile colors
-        KeyboardView(enteredLetters: $currentInput,
-                     gameOver: $gameOver, submitPressed: $submitPressed,
-                     wordtoSolve: targetWord)
+        VStack {
+            Spacer()
+            
+            GridView(tiles: $gridTiles)
+            
+            Spacer()
+            
+            KeyboardView(enteredLetters: $currentInput,
+                         gameOver: $gameOver, submitPressed: $submitPressed,
+                         wordtoSolve: targetWord,
+                         wordLength: wordLength)
             .onChange(of: currentInput) {
                 if !gameOver {
                     for index in 0..<gridTiles[currentRow].count {
-                        if index < currentInput.count {
-                            gridTiles[currentRow][index].letter = String(currentInput[index])
-                        } else {
-                            gridTiles[currentRow][index].letter = ""
-                        }
-                        
+                        gridTiles[currentRow][index].letter = index < currentInput.count ? String(currentInput[index]) : ""
                         gridTiles[currentRow][index].borderColor = Color.black
                     }//end of for loop
                 }//end of if not gameover
             }//end of on change
-        Spacer()
-        HStack{
-            Spacer()
             
-            Button("Submit") {
-                if !gameOver && currentInput.count == 5 {
-                    submitPressed.toggle()//needed for keyboard to update
-                    updateTileColors()
-                    
-                    if currentInput == targetWord {
-                        print("Game win")
-                        gameOver = true
-                        // TODO: Trigger game end code
-                    }
-                    
-                    // TODO: Check if input is a valid word
-                    
-                    currentRow += 1
-                    currentInput = ""
-                    
-                    if currentRow > 5 {
-                        print("Game end")
-                        gameOver = true
-                        // TODO: Trigger game end code
-                        //😦
+            Spacer()
+        
+            HStack{
+                Spacer()
+                
+                Button("Submit") {
+                    if !gameOver && currentInput.count == wordLength {
+                        submitPressed.toggle()//needed for keyboard to update
+                        updateTileColors()
+                        
+                        if currentInput == targetWord {
+                            print("Game win")
+                            gameOver = true
+                            // TODO: Trigger game end code
+                        }
+                        
+                        // TODO: Check if input is a valid word
+                        
+                        currentRow += 1
+                        currentInput = ""
+                        
+                        if currentRow > 5 {
+                            print("Game end")
+                            gameOver = true
+                            // TODO: Trigger game end code
+                            //😦
+                        }
                     }
                 }
-            }
-            .buttonStyle(.borderedProminent)
+                .buttonStyle(.borderedProminent)
+                
+                Spacer()
+                
+                // TODO: Backspace button
+                Button{
+                    print("delete pressed. current input is: \(currentInput)")
+                    if !gameOver && currentInput.count > 0 {
+                        //debugging info
+                        let i = currentInput.index(currentInput.startIndex, offsetBy: currentInput.count-1)
+                        let charRemoved = currentInput.remove(at: i)
+                        print("\(charRemoved) was removed. String is now \(currentInput)")
+                        
+                    }else{
+                        print("Nuh uh. Either no letters left to delete or game is already done. ")
+                    }
+                } label: {Image(systemName: "delete.backward")}
+                    .buttonStyle(.bordered)
+                
+                Spacer()
+            }//end of Hstack
             
             Spacer()
-            
-            // TODO: Backspace button
-            Button{
-                print("delete pressed. current input is: \(currentInput)")
-                if !gameOver && currentInput.count > 0 {
-                    //debugging info
-                    var i = currentInput.index(currentInput.startIndex, offsetBy: currentInput.count-1)
-                    var charRemoved = currentInput.remove(at: i)
-                    print("\(charRemoved) was removed. String is now \(currentInput)")
-                    
-                }else{
-                    print("Nuh uh. Either no letters left to delete or game is already done. ")
-                }
-            } label: {Image(systemName: "delete.backward")}
-            .buttonStyle(.bordered)
-            
-            Spacer()
-        }//end of Hstack
-        Spacer()
+        }
+        .onAppear() {
+            gridTiles = Array(repeating: Array(repeating: GridTileView(letter: ""), count: wordLength), count: 6)
+        }
     }
     
     // determines what color the grid tiles should be after submitting a word
@@ -117,8 +120,4 @@ struct GamePlayView: View {
             gridTiles[currentRow][index].borderColor = Color.clear
         }
     }
-}
-
-#Preview {
-    GamePlayView()
 }
