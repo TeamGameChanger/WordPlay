@@ -11,6 +11,7 @@ struct GamePlayView: View {
     @State var currentInput = ""
     @State var gameOver = false
     @State var currentRow = 0
+    @State var submitPressed = false
     
     // TODO: Update to handle both 5 letter and 6 letter words (5x6 or 6x6 grid)
     @State var gridTiles: [[GridTileView]] = Array(repeating: Array(repeating: GridTileView(letter: ""), count: 5), count: 6)
@@ -26,7 +27,7 @@ struct GamePlayView: View {
         // TODO: Change keyboard colors only when word is submitted
         // TODO: Do not override green or dark gray keyboard tile colors
         KeyboardView(enteredLetters: $currentInput,
-                     gameOver: $gameOver,
+                     gameOver: $gameOver, submitPressed: $submitPressed,
                      wordtoSolve: targetWord)
             .onChange(of: currentInput) {
                 if !gameOver {
@@ -38,12 +39,13 @@ struct GamePlayView: View {
                         }
                         
                         gridTiles[currentRow][index].borderColor = Color.black
-                    }
-                }
-            }
+                    }//end of for loop
+                }//end of if not gameover
+            }//end of on change
         
         Button("Submit") {
             if !gameOver && currentInput.count == 5 {
+                submitPressed.toggle() //not really paying attention to the value as much as whether it changed or not
                 updateTileColors()
                 
                 if currentInput == targetWord {
