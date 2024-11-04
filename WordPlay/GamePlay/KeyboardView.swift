@@ -81,11 +81,17 @@ struct KeyboardView: View {
     }//end of checkLetterPostion func
     
     func submitPressedCheck(enteredletters2: String){
+        var numOfLettersChecked = 0
         print("Entered the check change keyboard thing. Word to solve for is \(wordtoSolve)")
         for i in 0 ..< keyboardtiles.count {
-            print(i)
+            print("Checking keyboard tile #\(i). \(numOfLettersChecked) letters out of 5 found.")
+            if(numOfLettersChecked == wordtoSolve.count){
+                print("All letters found. Ending Loop")
+                break
+            }
             if(enteredletters2.contains(keyboardtiles[i].letter)){
                 print("\(keyboardtiles[i].letter) is in our entered letters, \(enteredletters2). checking if \(keyboardtiles[i].letter) is in the word \(wordtoSolve)")
+                numOfLettersChecked += 1 //letter has been found, shorten the loop
                 if(wordtoSolve.contains(keyboardtiles[i].letter)){
                     if(checkLetterPostion(letter: keyboardtiles[i].letter) == 0){
                         isInRightPositionKeyboard[i] = true
