@@ -76,9 +76,15 @@ struct GamePlayView: View {
             
             // TODO: Backspace button
             Button{
-                print("delete pressed")
+                print("delete pressed. current input is: \(currentInput)")
                 if !gameOver && currentInput.count > 0 {
+                    //debugging info
+                    var i = currentInput.index(currentInput.startIndex, offsetBy: currentInput.count-1)
+                    var charRemoved = currentInput.remove(at: i)
+                    print("\(charRemoved) was removed. String is now \(currentInput)")
                     
+                }else{
+                    print("Nuh uh. Either no letters left to delete or game is already done. ")
                 }
             } label: {Image(systemName: "delete.backward")}
             .buttonStyle(.bordered)
