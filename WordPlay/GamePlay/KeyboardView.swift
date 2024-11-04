@@ -100,17 +100,27 @@ struct KeyboardView: View {
                         print("\(keyboardtiles[i].letter) was set to GREEN")
                     }//end of inner if statment to check return value
                     else{
-                        isInRightPositionKeyboard[i] = false
-                        isInWordAndSelectedKeyboard[i] = true
-                        isNotInWordAndSelectedKeyboard[i] = false
-                        print("\(keyboardtiles[i].letter) was set to YELLOW")
+                        if(isInRightPositionKeyboard[i] == true){
+                            print("Letter has already been dicovered to be right. No overriding. Remaining GREEN")
+                        }else{
+                            isInRightPositionKeyboard[i] = false
+                            isInWordAndSelectedKeyboard[i] = true
+                            isNotInWordAndSelectedKeyboard[i] = false
+                            print("\(keyboardtiles[i].letter) was set to YELLOW")
+                        }
                     }//else end of inner if statement to check return value
                 }//end of if statement
                 else{
-                    isInRightPositionKeyboard[i] = false
-                    isInWordAndSelectedKeyboard[i] = false
-                    isNotInWordAndSelectedKeyboard[i] = true
-                    print("\(keyboardtiles[i].letter) not found. setting to GREY")
+                    if(isInRightPositionKeyboard[i] == true){
+                        print("Letter has already been dicovered to be right. No overriding. Remaining GREEN")
+                    }else if (isInWordAndSelectedKeyboard[i] == true){
+                        print("Letter has already been dicovered to be in the word. No overriding. Remaining YELLOW")
+                    }else{
+                        isInRightPositionKeyboard[i] = false
+                        isInWordAndSelectedKeyboard[i] = false
+                        isNotInWordAndSelectedKeyboard[i] = true
+                        print("\(keyboardtiles[i].letter) not found. setting to GREY")
+                    }
                 }//end of if statement for seeing if the letter was in the word
             }//end of if checking if the keyboard index was used
             else{
