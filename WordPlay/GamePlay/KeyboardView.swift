@@ -104,7 +104,7 @@ struct KeyboardView: View {
                     isInRightPositionKeyboard[i] = false
                     isInWordAndSelectedKeyboard[i] = false
                     isNotInWordAndSelectedKeyboard[i] = true
-                    print("\(keyboardtiles[i].letter) was set to GREY")
+                    print("\(keyboardtiles[i].letter) not found. setting to GREY")
                 }//end of if statement for seeing if the letter was in the word
             }//end of if checking if the keyboard index was used
             else{

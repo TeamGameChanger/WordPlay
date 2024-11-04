@@ -19,6 +19,8 @@ struct GamePlayView: View {
     let targetWord = "CRATE" //TODO: replace with the actual word needed to solve the wordplay
     
     var body: some View {
+        Spacer()
+        
         GridView(tiles: $gridTiles)
         
         Spacer()
@@ -42,31 +44,49 @@ struct GamePlayView: View {
                     }//end of for loop
                 }//end of if not gameover
             }//end of on change
-        
-        Button("Submit") {
-            if !gameOver && currentInput.count == 5 {
-                submitPressed.toggle() //not really paying attention to the value as much as whether it changed or not
-                updateTileColors()
-                
-                if currentInput == targetWord {
-                    print("Game win")
-                    gameOver = true
-                    // TODO: Trigger game end code
-                }
-                
-                // TODO: Check if input is a valid word
-                
-                currentRow += 1
-                currentInput = ""
-                
-                if currentRow > 5 {
-                    print("Game end")
-                    gameOver = true
-                    // TODO: Trigger game end code
+        Spacer()
+        HStack{
+            Spacer()
+            
+            Button("Submit") {
+                if !gameOver && currentInput.count == 5 {
+                    submitPressed.toggle()//needed for keyboard to update
+                    updateTileColors()
+                    
+                    if currentInput == targetWord {
+                        print("Game win")
+                        gameOver = true
+                        // TODO: Trigger game end code
+                    }
+                    
+                    // TODO: Check if input is a valid word
+                    
+                    currentRow += 1
+                    currentInput = ""
+                    
+                    if currentRow > 5 {
+                        print("Game end")
+                        gameOver = true
+                        // TODO: Trigger game end code
+                        //😦
+                    }
                 }
             }
-        }
-        .buttonStyle(.borderedProminent)
+            .buttonStyle(.borderedProminent)
+            
+            Spacer()
+            
+            Button{
+                print("delete pressed")
+                if !gameOver && currentInput.count > 0 {
+                    
+                }
+            } label: {Image(systemName: "delete.backward")}
+            .buttonStyle(.bordered)
+            
+            Spacer()
+        }//end of Hstack
+        Spacer()
     }
     
     // determines what color the grid tiles should be after submitting a word
