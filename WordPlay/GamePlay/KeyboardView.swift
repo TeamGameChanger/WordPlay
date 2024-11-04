@@ -13,9 +13,9 @@ struct KeyboardView: View {
     let columnskeyboard = [
                 GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40)), GridItem(.fixed(40))
     ]
-    @State var isInRightPositionKeyboard = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]//user selects letter in correct position
-    @State var isInWordAndSelectedKeyboard = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false] //user selects right letter wrong spot
-    @State var isNotInWordAndSelectedKeyboard = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false] //user selects wrong letter
+    @State var isInRightPositionKeyboard: [Bool] = Array(repeating: false, count: 26)//user selects letter in correct position
+    @State var isInWordAndSelectedKeyboard: [Bool] = Array(repeating: false, count: 26)//user selects right letter wrong spot
+    @State var isNotInWordAndSelectedKeyboard: [Bool] = Array(repeating: false, count: 26)//user selects wrong letter
     @State var keyboardtiles: [Tile] = [Tile(letter: "Q"), Tile(letter: "W"), Tile(letter: "E"), Tile(letter: "R"), Tile(letter: "T"), Tile(letter: "Y"), Tile(letter: "U"), Tile(letter: "I"), Tile(letter: "O"), Tile(letter: "P"), Tile(letter: "A"), Tile(letter: "S"), Tile(letter: "D"), Tile(letter: "F"), Tile(letter: "G"), Tile(letter: "H"), Tile(letter: "J"), Tile(letter: "K"), Tile(letter: "L"), Tile(letter: "Z"), Tile(letter: "X"), Tile(letter: "C"), Tile(letter: "V"), Tile(letter: "B"), Tile(letter: "N"), Tile(letter: "M")] //the entire keyboard
     let wordtoSolve: String
 
