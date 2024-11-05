@@ -19,7 +19,7 @@ struct ContentView: View {
             VStack {
                 LoginView()
                 
-                NavigationLink(destination: GamePlayView(wordLength: wordLength)) {
+                NavigationLink(destination: GamePlayView(wordLength: wordLength, targetWord: wordLength == 5 ? "CRATE" : "CRATER")) {
                     Text("test: go to game") //remove element afterwards, this is just to skip signing up
                         .padding()
                 }//end of test navigation

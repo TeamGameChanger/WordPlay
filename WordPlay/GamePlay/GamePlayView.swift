@@ -15,8 +15,7 @@ struct GamePlayView: View {
     @State var gridTiles: [[GridTileView]] = []
 
     let wordLength: Int
-    // TODO: Replace with the actual word needed to solve the wordplay
-    let targetWord = "CRATER"
+    let targetWord: String
     
     var body: some View {
         VStack {
@@ -71,8 +70,7 @@ struct GamePlayView: View {
                 .buttonStyle(.borderedProminent)
                 
                 Spacer()
-                
-                // TODO: Backspace button
+
                 Button{
                     print("delete pressed. current input is: \(currentInput)")
                     if !gameOver && currentInput.count > 0 {
@@ -100,22 +98,33 @@ struct GamePlayView: View {
     // determines what color the grid tiles should be after submitting a word
     func updateTileColors() {
         let target = Array(targetWord) // makes accessing characters simpler
+        let current = Array(currentInput)
         var frequencies = target.reduce(into: [:]) { counts, char in
             counts[char, default: 0] += 1
         }
         
-        for (index, letter) in currentInput.enumerated() {
-            if letter == target[index] {
+        // assign green tiles
+        for (index, letter) in target.enumerated() {
+            if letter == current[index] {
                 gridTiles[currentRow][index].backgroundColor = Color.green
-            }
-            else if let count = frequencies[letter], count > 0 {
-                gridTiles[currentRow][index].backgroundColor = Color.yellow
+                gridTiles[currentRow][index].textColor = Color.white
+                gridTiles[currentRow][index].borderColor = Color.clear
                 frequencies[letter]! -= 1
             }
-            else {
-                gridTiles[currentRow][index].backgroundColor = Color.gray
+        }
+        
+        // assign yellow and gray tiles
+        for (index, letter) in current.enumerated() {
+            if letter != target[index] {
+                if let count = frequencies[letter], count > 0 {
+                    gridTiles[currentRow][index].backgroundColor = Color.yellow
+                    frequencies[letter]! -= 1
+                }
+                else {
+                    gridTiles[currentRow][index].backgroundColor = Color.gray
+                }
             }
-            
+
             gridTiles[currentRow][index].textColor = Color.white
             gridTiles[currentRow][index].borderColor = Color.clear
         }
