@@ -13,6 +13,7 @@ struct GamePlayView: View {
     @State var currentRow = 0
     @State var submitPressed = false
     @State var gridTiles: [[GridTileView]] = []
+    @State var shouldShake = false
 
     let wordLength: Int
     let targetWord: String
@@ -21,7 +22,9 @@ struct GamePlayView: View {
         VStack {
             Spacer()
             
-            GridView(tiles: $gridTiles)
+            GridView(tiles: $gridTiles,
+                     shouldShake: $shouldShake,
+                     currentRow: $currentRow)
             
             Spacer()
             
@@ -29,14 +32,19 @@ struct GamePlayView: View {
                          gameOver: $gameOver, submitPressed: $submitPressed,
                          wordtoSolve: targetWord,
                          wordLength: wordLength)
-            .onChange(of: currentInput) {
-                if !gameOver {
+                .onAppear() {
                     for index in 0..<gridTiles[currentRow].count {
-                        gridTiles[currentRow][index].letter = index < currentInput.count ? String(currentInput[index]) : ""
-                        gridTiles[currentRow][index].borderColor = Color.black
-                    }//end of for loop
-                }//end of if not gameover
-            }//end of on change
+                        gridTiles[currentRow][index].borderColor = Color(UIColor.darkGray)
+                    }
+                }
+                .onChange(of: currentInput) {
+                    if !gameOver {
+                        for index in 0..<gridTiles[currentRow].count {
+                            gridTiles[currentRow][index].letter = index < currentInput.count ? String(currentInput[index]) : ""
+                            gridTiles[currentRow][index].borderColor = Color(UIColor.darkGray)
+                        }//end of for loop
+                    }//end of if not gameover
+                }//end of on change
             
             Spacer()
         
@@ -49,7 +57,7 @@ struct GamePlayView: View {
                     
                     let wordList = wordLength == 5 ? WordList.shared.fiveLetterWords : WordList.shared.sixLetterWords
                 
-                    if !gameOver && currentInput.count == wordLength &&  wordList.contains(currentInput.lowercased()) {
+                    if !gameOver && currentInput.count == wordLength && wordList.contains(currentInput.lowercased()) {
                         submitPressed.toggle()//needed for keyboard to update
                         updateTileColors()
                         
@@ -68,6 +76,9 @@ struct GamePlayView: View {
                             // TODO: Trigger game end code
                             //😦
                         }
+                    } else if !gameOver {
+                        // shake the row tiles if input is not long enough or word is not valid
+                        shouldShake = true
                     }
                 }
                 .buttonStyle(.borderedProminent)
