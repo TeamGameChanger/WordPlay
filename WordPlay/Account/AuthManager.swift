@@ -8,20 +8,29 @@ class AuthManager: ObservableObject {
     var user: User?
 
     // Determines if AuthManager should use mocked data
-    let isMocked: Bool
+    let isMocked: Bool = false
+    
+    var isSignedIn: Bool = false
 
     var userEmail: String? {
-
         // If mocked, return a mocked email string, otherwise return the users email if available
         isMocked ? "kingsley@dog.com" : user?.email
     }
+    
+    private var handle: AuthStateDidChangeListenerHandle?
 
-    init(isMocked: Bool = false) {
-
-       self.isMocked = isMocked
-
-       // TODO: Check for cached user for persisted login
+    init() {
+        handle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
+           self?.user = user
+           self?.isSignedIn = user != nil
+       }
     }
+    
+    deinit {
+       if let handle = handle {
+           Auth.auth().removeStateDidChangeListener(handle)
+       }
+   }
 
     // https://firebase.google.com/docs/auth/ios/start#sign_up_new_users
     func signUp(email: String, password: String) async -> Bool {
