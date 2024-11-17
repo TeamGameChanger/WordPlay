@@ -16,24 +16,28 @@ struct StartView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                HStack {
-                    Text("Word Length:")
-                    Picker("", selection: $wordLength) {
-                        Text("5").tag(5)
-                        Text("6").tag(6)
+            if stats == nil {
+                ProgressView("Loading...")
+            } else {
+                VStack {
+                    HStack {
+                        Text("Word Length:")
+                        Picker("", selection: $wordLength) {
+                            Text("5").tag(5)
+                            Text("6").tag(6)
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 100)
                     }
-                    .pickerStyle(.segmented)
-                    .frame(width: 100)
-                }
-
-                NavigationLink(destination: GamePlayView(stats: stats, wordLength: wordLength, targetWord: wordLength == 5 ? "CRATE" : "CRATER")) {
-                    Text("Play")
-                        .padding()
-                        .foregroundColor(.white)
-                        .frame(width: 80, height: 40)
-                        .background(.blue)
-                        .cornerRadius(20)
+                    
+                    NavigationLink(destination: GamePlayView(stats: stats, wordLength: wordLength, targetWord: wordLength == 5 ? "CRATE" : "CRATER")) {
+                        Text("Play")
+                            .padding()
+                            .foregroundColor(.white)
+                            .frame(width: 80, height: 40)
+                            .background(.blue)
+                            .cornerRadius(20)
+                    }
                 }
             }
         }
