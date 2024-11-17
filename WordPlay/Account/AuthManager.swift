@@ -2,7 +2,7 @@ import Foundation
 import FirebaseAuth // <-- Import Firebase Auth
 
 @Observable // <-- Make class observable
-class AuthManager {
+class AuthManager: ObservableObject {
 
     // A property to store the logged in user. User is an object provided by FirebaseAuth framework
     var user: User?
