@@ -11,6 +11,7 @@ struct GamePlayView: View {
     @State var currentInput = ""
     @State var gameOver = false
     @State var currentRow = 0
+    @State var submitPressed = false
     
     // TODO: Update to handle both 5 letter and 6 letter words (5x6 or 6x6 grid)
     @State var gridTiles: [[GridTileView]] = Array(repeating: Array(repeating: GridTileView(letter: ""), count: 5), count: 6)
@@ -18,15 +19,15 @@ struct GamePlayView: View {
     let targetWord = "CRATE" //TODO: replace with the actual word needed to solve the wordplay
     
     var body: some View {
+        Spacer()
+        
         GridView(tiles: $gridTiles)
         
         Spacer()
         
-        // TODO: Backspace button
-        // TODO: Change keyboard colors only when word is submitted
         // TODO: Do not override green or dark gray keyboard tile colors
         KeyboardView(enteredLetters: $currentInput,
-                     gameOver: $gameOver,
+                     gameOver: $gameOver, submitPressed: $submitPressed,
                      wordtoSolve: targetWord)
             .onChange(of: currentInput) {
                 if !gameOver {
@@ -38,33 +39,59 @@ struct GamePlayView: View {
                         }
                         
                         gridTiles[currentRow][index].borderColor = Color.black
+                    }//end of for loop
+                }//end of if not gameover
+            }//end of on change
+        Spacer()
+        HStack{
+            Spacer()
+            
+            Button("Submit") {
+                if !gameOver && currentInput.count == 5 {
+                    submitPressed.toggle()//needed for keyboard to update
+                    updateTileColors()
+                    
+                    if currentInput == targetWord {
+                        print("Game win")
+                        gameOver = true
+                        // TODO: Trigger game end code
+                    }
+                    
+                    // TODO: Check if input is a valid word
+                    
+                    currentRow += 1
+                    currentInput = ""
+                    
+                    if currentRow > 5 {
+                        print("Game end")
+                        gameOver = true
+                        // TODO: Trigger game end code
+                        //😦
                     }
                 }
             }
-        
-        Button("Submit") {
-            if !gameOver && currentInput.count == 5 {
-                updateTileColors()
-                
-                if currentInput == targetWord {
-                    print("Game win")
-                    gameOver = true
-                    // TODO: Trigger game end code
+            .buttonStyle(.borderedProminent)
+            
+            Spacer()
+            
+            // TODO: Backspace button
+            Button{
+                print("delete pressed. current input is: \(currentInput)")
+                if !gameOver && currentInput.count > 0 {
+                    //debugging info
+                    var i = currentInput.index(currentInput.startIndex, offsetBy: currentInput.count-1)
+                    var charRemoved = currentInput.remove(at: i)
+                    print("\(charRemoved) was removed. String is now \(currentInput)")
+                    
+                }else{
+                    print("Nuh uh. Either no letters left to delete or game is already done. ")
                 }
-                
-                // TODO: Check if input is a valid word
-                
-                currentRow += 1
-                currentInput = ""
-                
-                if currentRow > 5 {
-                    print("Game end")
-                    gameOver = true
-                    // TODO: Trigger game end code
-                }
-            }
-        }
-        .buttonStyle(.borderedProminent)
+            } label: {Image(systemName: "delete.backward")}
+            .buttonStyle(.bordered)
+            
+            Spacer()
+        }//end of Hstack
+        Spacer()
     }
     
     // determines what color the grid tiles should be after submitting a word

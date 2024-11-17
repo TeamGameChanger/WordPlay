@@ -69,6 +69,3 @@ struct Tile{
     let letter: String
 }
 
-//#Preview {
-//    LetterTileView(isInRightPosition: true, isInWordAndSelected: false, isNotInWordAndSelected: false)
-//}
