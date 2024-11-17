@@ -32,11 +32,11 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 
 **Required Must-have Stories**
 
-- [ ] User can press a button to start the game
+- [X] User can press a button to start the game
 - [X] User can see a grid that is initially empty and fills up as they submit words
 - [X] User can type and submit a word up to 6 times
 - [X] User can see which letters are correct and whether or not they are in the correct position
-- [ ] User can see their score for the game
+- [X] User can see their score for the game
 - [X] User can sign up with a username and password
 - [X] User can login
 - [X] User can logout
@@ -44,10 +44,10 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
 **Optional Nice-to-have Stories**
 
 - [ ] User can only play the game once a day
-- [ ] User can select their desired gamemode (5 or 6 letter words)
-- [ ] User can see their highest streak of consecutive days played
-- [ ] User can see their total number of games played
-- [ ] User can see their total number of wins
+- [X] User can select their desired gamemode (5 or 6 letter words)
+- [X] User can see their current streak of consecutive days played
+- [X] User can see their total number of games played
+- [X] User can see their total number of wins
 - [ ] User recieves a daily notification reminding them to play
 - [ ] User can copy their score to share with friends
 - [X] User can see a custom keyboard that keeps track of remaining letters
@@ -144,7 +144,20 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
   </div>
 
 ### Sprint 2 Progress
+<div>
+    <a href="https://www.loom.com/share/f2b4a1d131fa42f5b58faf1d2a15e96f">
+    </a>
+    <a href="https://www.loom.com/share/f2b4a1d131fa42f5b58faf1d2a15e96f">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/f2b4a1d131fa42f5b58faf1d2a15e96f-2f760d1fdb97bd6f-full-play.gif">
+    </a>
+  </div>
 
 ### Sprint 3 Progress
-
+<div>
+    <a href="https://www.loom.com/share/f8bd3dca595842debc8d10539bac014f">
+    </a>
+    <a href="https://www.loom.com/share/f8bd3dca595842debc8d10539bac014f">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/f8bd3dca595842debc8d10539bac014f-297c1c2bd0377b0a-full-play.gif">
+    </a>
+  </div>
 
