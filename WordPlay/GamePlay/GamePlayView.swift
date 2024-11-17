@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GamePlayView: View {
     @EnvironmentObject var authManager: AuthManager
+    @Environment(\.dismiss) var dismiss
     @State var stats: Stats?  // Holds user's stats data
     @State var currentInput = ""
     @State var gameOver = false
@@ -16,6 +17,7 @@ struct GamePlayView: View {
     @State var submitPressed = false
     @State var gridTiles: [[GridTileView]] = []
     @State var shouldShake = false
+    @State var foundWord = false
 
     let wordLength: Int
     let targetWord: String
@@ -46,13 +48,13 @@ struct GamePlayView: View {
                         for index in 0..<gridTiles[currentRow].count {
                             gridTiles[currentRow][index].letter = index < currentInput.count ? String(currentInput[index]) : ""
                             gridTiles[currentRow][index].borderColor = Color(UIColor.darkGray)
-                        }//end of for loop
-                    }//end of if not gameover
-                }//end of on change
+                        }
+                    }
+                }
             
             Spacer()
         
-            HStack{
+            HStack {
                 Spacer()
                 
                 Button("Submit") {
@@ -62,11 +64,12 @@ struct GamePlayView: View {
                     let wordList = wordLength == 5 ? WordList.shared.fiveLetterWords : WordList.shared.sixLetterWords
                 
                     if !gameOver && currentInput.count == wordLength && wordList.contains(currentInput.lowercased()) {
-                        submitPressed.toggle()//needed for keyboard to update
+                        submitPressed.toggle() // needed for keyboard to update
                         updateTileColors()
                         
                         if currentInput == targetWord {
                             print("Game win")
+                            foundWord = true
                             gameOver = true
                             updateStats(win: true)
                         }
@@ -84,30 +87,40 @@ struct GamePlayView: View {
                         shouldShake = true
                     }
                 }
+                .alert(isPresented: $gameOver) {
+                    Alert(
+                        title: Text(foundWord ? "You won!" : "You lost!"),
+                        message: Text(foundWord ? "Fantastic job!" : "Better luck next time."),
+                        dismissButton: .default(Text("Got it!"), action: {
+                            dismiss() // go back to start screen
+                        })
+                    )
+                }
                 .buttonStyle(.borderedProminent)
                 
                 Spacer()
 
-                Button{
+                Button {
                     print("delete pressed. current input is: \(currentInput)")
                     if !gameOver && currentInput.count > 0 {
                         //debugging info
                         let i = currentInput.index(currentInput.startIndex, offsetBy: currentInput.count-1)
                         let charRemoved = currentInput.remove(at: i)
                         print("\(charRemoved) was removed. String is now \(currentInput)")
-                        
-                    }else{
-                        print("Nuh uh. Either no letters left to delete or game is already done. ")
+                    } else {
+                        print("Nuh uh. Either no letters left to delete or game is already done.")
                     }
-                } label: {Image(systemName: "delete.backward")}
-                    .buttonStyle(.bordered)
+                } label: {
+                    Image(systemName: "delete.backward")
+                }
+                .buttonStyle(.bordered)
                 
                 Spacer()
-            }//end of Hstack
+            }
             
             Spacer()
         }
-        .onAppear() {
+        .onAppear {
             gridTiles = Array(repeating: Array(repeating: GridTileView(letter: ""), count: wordLength), count: 6)
         }
     }
