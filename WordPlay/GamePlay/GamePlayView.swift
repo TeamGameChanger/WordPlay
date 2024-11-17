@@ -129,11 +129,6 @@ struct GamePlayView: View {
     func updateTileColors() {
         let target = Array(targetWord) // makes accessing characters simpler
         let current = Array(currentInput)
-        print("@@@this is currentInput \(currentInput)")
-        if (targetWord == currentInput){
-            foundWord = true;
-        }
-        print("\(targetWord == currentInput)")
         var frequencies = target.reduce(into: [:]) { counts, char in
             counts[char, default: 0] += 1
         }
