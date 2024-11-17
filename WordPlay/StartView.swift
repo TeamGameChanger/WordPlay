@@ -10,6 +10,8 @@ import SwiftUI
 struct StartView: View {
     @EnvironmentObject var authManager: AuthManager
     @State private var stats: Stats? = nil  // Holds user's stats data
+    @State private var fiveLetterWord = "CRATE"
+    @State private var sixLetterWord = "CRATER"
     @State var wordLength = 5
 
     private let firestoreManager = FirestoreManager()
@@ -30,7 +32,7 @@ struct StartView: View {
                         .frame(width: 100)
                     }
                     
-                    NavigationLink(destination: GamePlayView(stats: stats, wordLength: wordLength, targetWord: wordLength == 5 ? "CRATE" : "CRATER")) {
+                    NavigationLink(destination: GamePlayView(stats: stats, wordLength: wordLength, targetWord: wordLength == 5 ? fiveLetterWord : sixLetterWord)) {
                         Text("Play")
                             .padding()
                             .foregroundColor(.white)
@@ -43,6 +45,15 @@ struct StartView: View {
         }
         .onAppear {
             loadOrCreateStats()
+            
+            // initializes 5 and 6 letter word lists if not already initialized
+            WordList.shared.initialize()
+            
+            fiveLetterWord = WordList.shared.fiveLetterWords.randomElement()?.uppercased() ?? fiveLetterWord
+            sixLetterWord = WordList.shared.sixLetterWords.randomElement()?.uppercased() ?? sixLetterWord
+            
+            print("5 letter word: \(fiveLetterWord)")
+            print("6 letter word: \(sixLetterWord)")
         }
         .navigationTitle("WordPlay")
         .navigationBarTitleDisplayMode(.inline)

@@ -58,9 +58,6 @@ struct GamePlayView: View {
                 Spacer()
                 
                 Button("Submit") {
-                    // initializes 5 and 6 letter word lists if not already initialized
-                    WordList.shared.initialize()
-                    
                     let wordList = wordLength == 5 ? WordList.shared.fiveLetterWords : WordList.shared.sixLetterWords
                 
                     if !gameOver && currentInput.count == wordLength && wordList.contains(currentInput.lowercased()) {
