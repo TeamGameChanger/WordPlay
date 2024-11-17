@@ -46,7 +46,11 @@ struct LoginView: View {
                     }
                 }
             }
-            .buttonStyle(.borderedProminent)
+            .bold()
+            .foregroundColor(.white)
+            .frame(width: 80, height: 40)
+            .background(.blue)
+            .cornerRadius(20)
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Login Error"),
@@ -61,6 +65,7 @@ struct LoginView: View {
             NavigationLink(destination: SignUpView()) {
                 Text("Sign Up")
                     .padding(.top, 5)
+                    .bold()
             }
         }
         .padding()

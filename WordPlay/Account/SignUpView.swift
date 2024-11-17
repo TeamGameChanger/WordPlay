@@ -17,8 +17,14 @@ struct SignUpView: View {
 
     var body: some View {
         VStack {
-            Text("Sign Up for WordPlay!")
+            Text("Register Account")
                 .font(.largeTitle)
+                .bold()
+            
+            Spacer()
+                .frame(height: 20)
+            
+            Text("Sign up to play and save your stats!")
 
             // Email + password fields
             VStack {
@@ -46,7 +52,11 @@ struct SignUpView: View {
                     }
                 }
             }
-            .buttonStyle(.borderedProminent) // <-- Style button
+            .bold()
+            .foregroundColor(.white)
+            .frame(width: 100, height: 40)
+            .background(.blue)
+            .cornerRadius(20)
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Sign Up Error"),

@@ -34,7 +34,7 @@ struct StatsView: View {
                     StatsRow(title: "Total Wins", value: "\(stats.totalWon)")
                     StatsRow(title: "Total Games", value: "\(stats.totalGames)")
                     StatsRow(title: "Last Game", value: formattedDate(stats.lastGameDate))
-                    StatsRow(title: "Default Size", value: "\(stats.defaultSize)")
+                    StatsRow(title: "Default Word Length", value: "\(stats.defaultSize)")
                 }
                 .padding()
                 .background(Color(.secondarySystemBackground))

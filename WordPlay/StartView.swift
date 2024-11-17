@@ -13,6 +13,7 @@ struct StartView: View {
     @State private var fiveLetterWord = "CRATE"
     @State private var sixLetterWord = "CRATER"
     @State var wordLength = 5
+    private let options = ["5 letter word", "6 letter word"]
 
     private let firestoreManager = FirestoreManager()
 
@@ -22,15 +23,38 @@ struct StartView: View {
                 ProgressView("Loading...")
             } else {
                 VStack {
-                    HStack {
-                        Text("Word Length:")
-                        Picker("", selection: $wordLength) {
-                            Text("5").tag(5)
-                            Text("6").tag(6)
+                    Spacer()
+                        .frame(height: 10)
+                    
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250)
+                    
+                    Spacer()
+                        .frame(height: 30)
+                    
+                    VStack {
+                        Text("Select Gameplay Mode")
+                            .bold()
+                    
+                        ForEach(options, id: \.self) { option in
+                            HStack {
+                                Image(systemName: wordLength == getTag(for: option) ? "circle.fill" : "circle")
+                                
+                                Text(option)
+                            }
+                            .padding(5)
+                            .foregroundColor(wordLength == getTag(for: option) ? .blue : .black)
+                            .onTapGesture {
+                                wordLength = getTag(for: option)
+                            }
                         }
-                        .pickerStyle(.segmented)
-                        .frame(width: 100)
                     }
+                    .padding()
+                    
+                    Spacer()
+                        .frame(height: 30)
                     
                     NavigationLink(destination: GamePlayView(stats: stats, wordLength: wordLength, targetWord: wordLength == 5 ? fiveLetterWord : sixLetterWord)) {
                         Text("Play")
@@ -41,6 +65,8 @@ struct StartView: View {
                             .background(.blue)
                             .cornerRadius(20)
                     }
+                    
+                    Spacer()
                 }
             }
         }
@@ -70,6 +96,17 @@ struct StartView: View {
                     authManager.signOut()
                 }
             }
+        }
+    }
+    
+    private func getTag(for option: String) -> Int {
+        switch option {
+        case "5 letter word":
+            return 5
+        case "6 letter word":
+            return 6
+        default:
+            return 5
         }
     }
 
