@@ -20,6 +20,7 @@ struct KeyboardView: View {
     @State var keyboardtiles: [Tile] = [Tile(letter: "Q"), Tile(letter: "W"), Tile(letter: "E"), Tile(letter: "R"), Tile(letter: "T"), Tile(letter: "Y"), Tile(letter: "U"), Tile(letter: "I"), Tile(letter: "O"), Tile(letter: "P"), Tile(letter: "A"), Tile(letter: "S"), Tile(letter: "D"), Tile(letter: "F"), Tile(letter: "G"), Tile(letter: "H"), Tile(letter: "J"), Tile(letter: "K"), Tile(letter: "L"), Tile(letter: "Z"), Tile(letter: "X"), Tile(letter: "C"), Tile(letter: "V"), Tile(letter: "B"), Tile(letter: "N"), Tile(letter: "M")] //the entire keyboard
     @State var enteredLettersMorePermananet = ""
     let wordtoSolve: String
+    let wordLength: Int
 
     var body: some View {
         LazyVGrid(columns: columnskeyboard) {
@@ -27,7 +28,7 @@ struct KeyboardView: View {
                 LetterTileView(tile: keyboardtiles[index], isInRightPosition: $isInRightPositionKeyboard[index], isInWordAndSelected: $isInWordAndSelectedKeyboard[index], isNotInWordAndSelected: $isNotInWordAndSelectedKeyboard[index], onTapOnContent:{
                         print("i was tapped!") //add more brain
                     if !gameOver {
-                        if(enteredLetters.count < 5){ //checks that user isnt putting in more than 5 letters
+                        if(enteredLetters.count < wordLength){ //checks that user isnt putting in more than 5 or 6 letters depending on chosen gamemode
                             enteredLetters = enteredLetters + keyboardtiles[index].letter
                             enteredLettersMorePermananet = enteredLetters
                             print("numOfLettersEntered: \(enteredLetters.count), enteredLetters: \(enteredLetters), enteredLettersMorePermananet: \(enteredLettersMorePermananet)")
