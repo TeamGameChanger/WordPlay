@@ -10,6 +10,7 @@ WordPlay Design Project - README Template
 3. [Wireframes](#Wireframes)
 4. [Schema](#Schema)
 5. [Sprints](#Sprints)
+6. [Demo](#Demo)
 
 ## Overview
 
@@ -158,6 +159,15 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
     </a>
     <a href="https://www.loom.com/share/f8bd3dca595842debc8d10539bac014f">
       <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/f8bd3dca595842debc8d10539bac014f-297c1c2bd0377b0a-full-play.gif">
+    </a>
+  </div>
+
+## Project Demo
+<div>
+    <a href="https://www.loom.com/share/f08d2305025e4754b8b4d00fa5f37c6f">
+    </a>
+    <a href="https://www.loom.com/share/f08d2305025e4754b8b4d00fa5f37c6f">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/f08d2305025e4754b8b4d00fa5f37c6f-92ae7d4583123dd0-full-play.gif">
     </a>
   </div>
 
