@@ -88,15 +88,14 @@ struct GamePlayView: View {
                     }
                 }
                 .alert(isPresented: $gameOver) {
-                                Alert(
-                                    
-                                    title: Text(foundWord == true ? "You won!" : "You lost!!" ),
-                                    message: Text(foundWord == true ? "Fantastic job!!" : "Better luck next time."),
-                                       dismissButton: .default(Text("Got it!")) , action: {
-                            dismiss() // go back to start screen
-                        })
-                                   )
-                            }
+                    Alert(
+                        title: Text(foundWord == true ? "You won!" : "You lost!!" ),
+                        message: Text(foundWord == true ? "Fantastic job!!" : "Better luck next time."),
+                           dismissButton: .default(Text("Got it!") , action: {
+                               dismiss() // go back to start screen
+                           })
+                        )
+                }
                 .buttonStyle(.borderedProminent)
                 
                 Spacer()
