@@ -17,8 +17,10 @@ struct LoginView: View {
 
     var body: some View {
         VStack {
-            Text("WordPlay")
-                .font(.largeTitle)
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 250)
             
             VStack {
                 TextField("Email", text: $email)

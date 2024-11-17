@@ -35,6 +35,7 @@ struct StartView: View {
                     NavigationLink(destination: GamePlayView(stats: stats, wordLength: wordLength, targetWord: wordLength == 5 ? fiveLetterWord : sixLetterWord)) {
                         Text("Play")
                             .padding()
+                            .bold()
                             .foregroundColor(.white)
                             .frame(width: 80, height: 40)
                             .background(.blue)
