@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GamePlayView: View {
+    @EnvironmentObject var authManager: AuthManager
+    @State var stats: Stats?  // Holds user's stats data
     @State var currentInput = ""
     @State var gameOver = false
     @State var currentRow = 0
@@ -17,6 +19,8 @@ struct GamePlayView: View {
 
     let wordLength: Int
     let targetWord: String
+    
+    private let firestoreManager = FirestoreManager()
     
     var body: some View {
         VStack {
@@ -64,7 +68,7 @@ struct GamePlayView: View {
                         if currentInput == targetWord {
                             print("Game win")
                             gameOver = true
-                            // TODO: Trigger game end code
+                            updateStats(win: true)
                         }
                         
                         currentRow += 1
@@ -73,8 +77,7 @@ struct GamePlayView: View {
                         if currentRow > 5 {
                             print("Game end")
                             gameOver = true
-                            // TODO: Trigger game end code
-                            //😦
+                            updateStats(win: false)
                         }
                     } else if !gameOver {
                         // shake the row tiles if input is not long enough or word is not valid
@@ -141,6 +144,30 @@ struct GamePlayView: View {
 
             gridTiles[currentRow][index].textColor = Color.white
             gridTiles[currentRow][index].borderColor = Color.clear
+        }
+    }
+    
+    // Update stats after a game
+    private func updateStats(win: Bool) {
+        guard var updatedStats = stats else { return }
+        
+        updatedStats.totalGames += 1
+        updatedStats.lastGameDate = Date()
+        
+        if win {
+            updatedStats.totalWon += 1
+            updatedStats.streak += 1
+        } else {
+            updatedStats.streak = 0
+        }
+        
+        firestoreManager.updateStats(updatedStats) { result in
+            switch result {
+            case .success():
+                stats = updatedStats
+            case .failure(let error):
+                print("Error updating stats: \(error.localizedDescription)")
+            }
         }
     }
 }
