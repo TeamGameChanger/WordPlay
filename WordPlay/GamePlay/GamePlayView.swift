@@ -88,14 +88,15 @@ struct GamePlayView: View {
                     }
                 }
                 .alert(isPresented: $gameOver) {
-                    Alert(
-                        title: Text(foundWord ? "You won!" : "You lost!"),
-                        message: Text(foundWord ? "Fantastic job!" : "Better luck next time."),
-                        dismissButton: .default(Text("Got it!"), action: {
+                                Alert(
+                                    
+                                    title: Text(foundWord == true ? "You won!" : "You lost!!" ),
+                                    message: Text(foundWord == true ? "Fantastic job!!" : "Better luck next time."),
+                                       dismissButton: .default(Text("Got it!")) , action: {
                             dismiss() // go back to start screen
                         })
-                    )
-                }
+                                   )
+                            }
                 .buttonStyle(.borderedProminent)
                 
                 Spacer()
@@ -129,6 +130,11 @@ struct GamePlayView: View {
     func updateTileColors() {
         let target = Array(targetWord) // makes accessing characters simpler
         let current = Array(currentInput)
+        print("@@@this is currentInput \(currentInput)")
+        if (targetWord == currentInput){
+            foundWord = true;
+        }
+        print("\(targetWord == currentInput)")
         var frequencies = target.reduce(into: [:]) { counts, char in
             counts[char, default: 0] += 1
         }
