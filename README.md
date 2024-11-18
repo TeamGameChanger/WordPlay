@@ -162,7 +162,7 @@ WordPlay is a recreational mobile app that challenges users to expand their crea
     </a>
   </div>
 
-## Project Demo
+### Project Demo
 <div>
     <a href="https://www.loom.com/share/f08d2305025e4754b8b4d00fa5f37c6f">
     </a>
